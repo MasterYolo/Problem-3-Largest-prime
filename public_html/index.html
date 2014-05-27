@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Problem 3 - Largest prime factor</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script type ="text/javascript">
+            function factorise(numberToFactorrise) {
+                var num = numberToFactorrise;  // Number to factorise
+                var text = ""; // Init
+                var checker = 2; // Smallest prime checker.
+
+                while (checker * checker <= num) // Check if worth looking for primefactors.
+                {
+                    if (num % checker == 0) // Check if the input is a prime
+                    {
+                        text = text + checker; //Record the factor
+                        num = num / checker; // Divide it away
+                        if (num != 1) // check that it isn't the last
+                        {
+                            text = text + "."; // Prepare output for next.
+                        }
+                    }
+                    else
+                    {
+                        checker++; // try the next possible factor
+                    }
+                }
+                if (num != 1) //If there is anything left after the loop is done.
+                {                //Last prime factor
+                    text = text + num; // records the last primefactor
+                }
+                if (text == "" + numberToFactorrise) // if the only prime factor is the orginal input
+                {
+                    text = text; //Adds it to the prime list. 
+                }
+                return text; //Return the prime factors.
+            }
+        </script>
+        
+        <p> This site solves the Project euler problem 3 - Large prime factors </p>
+        <p> Problem to solve : What is the largest prime factor of the number 600851475143 ? </p>
+        <p> Instead of build the solution around a specific number I made it so i can factorise any number. </p>
+        <form method ="POST">
+            <p> Number to facorise :
+                <input type="text" name="numbertofactorise">
+                <input type ="button" name="Button" value="Click to factorise"
+                       onclick="form.factors.value = factorise(form.numbertofactorise.value)">
+                <br/>
+                The prime factors are :
+                <input type="text" name="factors">
+            </p>
+        </form>
+    </body>
+</html>
